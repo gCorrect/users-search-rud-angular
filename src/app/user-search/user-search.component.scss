@@ -1,0 +1,36 @@
+:host {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20em;
+  height: 30em;
+  padding: 2em 1em;
+  background-color: rgb(238, 242, 241);
+}
+input {
+  width: 100%;
+  height: 1.5em;
+  padding: 0.3em;
+  border: none;
+  border-radius: 0.2em;
+  box-shadow: 0 0 0.2em 0.1em rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0.5em 0.2em rgba(100, 100, 100, 0.42);
+  }
+}
+::-webkit-input-placeholder {
+  font-style: italic;
+  color: rgb(171, 180, 177);
+}
+:-moz-placeholder {
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}

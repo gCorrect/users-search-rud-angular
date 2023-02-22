@@ -1,0 +1,75 @@
+:host {
+  width: 100%;
+}
+ul {
+  list-style: none;
+  transition: 0.5s;
+  width: inherit;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+  li {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 100%;
+    height: 2em;
+    padding: 0.5em 0.2em;
+    background-color: white;
+    margin-bottom: 0.1em;
+    border-radius: 0.2em;
+    transition: 0.5s;
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover {
+      box-shadow: 0 0 0.2em 0.1em rgba(0, 0, 0, 0.2);
+    }
+    &:hover .fa-ellipsis {
+      color: rgb(171, 180, 177);
+    }
+    &:focus {
+      outline: none;
+      background-color: rgb(236, 238, 237);
+      box-shadow: 0 0 0.2em 0.1em rgba(0, 0, 0, 0.2);
+    }
+    &:focus .fa-ellipsis {
+      color: rgb(171, 180, 177);
+    }
+  }
+  .update-buttons {
+    // transform: translateX(-50%);
+  }
+  #edit {
+    margin-right: 0.5em;
+  }
+  #delete {
+    background-color: magenta;
+    border-radius: 0.2em;
+    color: white;
+    &:hover {
+      color: rgb(222, 224, 224);
+    }
+    &:focus {
+      color: rgb(222, 224, 224);
+    }
+  }
+  #three-dots {
+    border-radius: 50%;
+    &:hover {
+      background-color: rgb(236, 238, 237);
+    }
+  }
+  .fa-ellipsis {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    color: blue;
+  }
+}

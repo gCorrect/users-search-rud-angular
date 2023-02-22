@@ -1,0 +1,17 @@
+<form>
+  <button type="button" (click)="goBack()">
+    <fa-icon [icon]="xIcon" class="fa-solid fa-x x-icon"></fa-icon>
+  </button>
+
+  <h3>EDIT USER</h3>
+
+  <input type="text" placeholder="name" />
+  <input type="text" placeholder="surname" />
+  <input type="text" placeholder="email" />
+  <input type="text" placeholder="company name" />
+
+  <div class="form-buttons">
+    <button id="cancel" type="button" (click)="goBack()">Cancel</button>
+    <button id="save" type="submit">Save User</button>
+  </div>
+</form>
