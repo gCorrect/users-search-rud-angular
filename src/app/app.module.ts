@@ -1,13 +1,17 @@
+// internal
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+// external
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // components
 import { AppComponent } from './app.component';
 import { UserSearchComponent } from './user-search/user-search.component';
-import { ThreeDotsMenuComponent } from './three-dots-menu/three-dots-menu.component';
 import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 
@@ -15,7 +19,6 @@ import { UserEditComponent } from './user-edit/user-edit.component';
   declarations: [
     AppComponent,
     UserSearchComponent,
-    ThreeDotsMenuComponent,
     UsersComponent,
     UserEditComponent,
   ],
@@ -24,6 +27,12 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
