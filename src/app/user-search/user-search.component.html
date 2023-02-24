@@ -1,5 +1,9 @@
-<input id="search" type="text" placeholder="search" />
+<!-- search user by name -->
+<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+<!-- users list -->
 <users></users>
+<!-- <users [users]="users$"></users> -->
 
 <!-- <li *ngFor="let user of users">
   <a [routerLink]="['/user', user.id]">

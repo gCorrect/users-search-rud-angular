@@ -3,7 +3,7 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../user.service';
 // data
 import { User } from 'data/user';
-import { Users } from 'data/mock-users';
+// import { Users } from 'data/mock-users';
 
 @Component({
   selector: 'users',
@@ -22,6 +22,11 @@ export class UsersComponent implements OnInit {
     this.userService
       .getUsers()
       .subscribe((users) => (this.users = users.slice(0, 7)));
+  }
+
+  delete(user: User): void {
+    this.users = this.users.filter((u) => u !== user);
+    this.userService.deleteUser(user.id).subscribe();
   }
 
   onSelect(user: User, li_id: number): void {

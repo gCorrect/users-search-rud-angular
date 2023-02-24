@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 // data
-import { UserService } from '../user.service';
 import { User } from 'data/user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'user-edit',
@@ -13,8 +13,9 @@ import { User } from 'data/user';
 })
 export class UserEditComponent implements OnInit {
   // @Input() id?: number;
-  xIcon = faX;
   user: User | undefined;
+  xIcon = faX;
+
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -26,7 +27,7 @@ export class UserEditComponent implements OnInit {
   }
 
   getUser(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.userService.getUser(id).subscribe((user) => (this.user = user));
   }
 

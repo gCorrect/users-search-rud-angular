@@ -1,6 +1,7 @@
 // internal
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -16,15 +17,10 @@ import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserSearchComponent,
-    UsersComponent,
-    UserEditComponent,
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     FontAwesomeModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -33,6 +29,12 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),
+  ],
+  declarations: [
+    AppComponent,
+    UserSearchComponent,
+    UsersComponent,
+    UserEditComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

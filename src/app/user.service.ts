@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 // data
 import { User } from '../../data/user';
-import { Users } from '../../data/mock-users';
+// import { Users } from '../../data/mock-users';
 
 @Injectable({
   providedIn: 'root',
@@ -60,11 +60,31 @@ export class UserService {
     };
   }
 
-  /** PUT: update the hero on the server */
+  /** PUT: update the user on the server */
   updateUser(user: User): Observable<any> {
     return this.http
       .put(this.usersUrl, user, this.httpOptions)
-      .pipe(catchError(this.handleError<any>('updateHero')));
+      .pipe(catchError(this.handleError<any>('updateUser')));
+  }
+
+  /** DELETE: delete the user from the server */
+  deleteUser(id: number): Observable<User> {
+    const url = `${this.usersUrl}/${id}`;
+
+    return this.http
+      .delete<User>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<User>('deleteUser')));
+  }
+
+  /* GET heroes whose name contains search term */
+  searchUsers(term: string): Observable<User[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http
+      .get<User[]>(`${this.usersUrl}/?name=${term}`)
+      .pipe(catchError(this.handleError<User[]>('searchHeroes', [])));
   }
 
   constructor(private http: HttpClient) {}
