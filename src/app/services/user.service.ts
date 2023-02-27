@@ -5,33 +5,43 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 // data
-import { User } from '../../data/user';
+// import { User } from '../../../data/user';
+import { User } from '../models/user.model';
+
 // import { Users } from '../../data/mock-users';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private usersUrl = 'api/users';
+  private usersUrl: string = 'https://jsonplaceholder.typicode.com/users';
+  // private usersUrl = 'api/users';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
   };
+
+  constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
     // const users = of(Users);
     // return users;
-    return this.http
-      .get<User[]>(this.usersUrl)
-      .pipe(catchError(this.handleError<User[]>('getUsers', [])));
+    return this.http.get<User[]>(this.usersUrl);
+    // .pipe(catchError(this.handleError<User[]>('getUsers', [])));
+  }
+
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/${id}`);
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getUser(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
-    return this.http
-      .get<User>(url)
-      .pipe(catchError(this.handleError<User>(`getHero id=${id}`)));
-  }
+  // getUser(id: number): Observable<User> {
+  //   const url = `${this.usersUrl}/${id}`;
+  //   return this.http
+  //     .get<User>(url)
+  //     .pipe(catchError(this.handleError<User>(`getHero id=${id}`)));
+  // }
 
   // getUser(id: number): Observable<User> {
   //   // For now, assume that a hero with the specified `id` always exists.
@@ -86,6 +96,4 @@ export class UserService {
       .get<User[]>(`${this.usersUrl}/?name=${term}`)
       .pipe(catchError(this.handleError<User[]>('searchHeroes', [])));
   }
-
-  constructor(private http: HttpClient) {}
 }

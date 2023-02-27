@@ -1,0 +1,65 @@
+<!-- close X button -->
+<button type="button" (click)="goBack()">
+  <fa-icon [icon]="xIcon" class="fa-solid fa-x x-icon"></fa-icon>
+</button>
+
+<h3>EDIT USER</h3>
+
+<!-- update info inputs -->
+<div *ngIf="user" class="update-inputs">
+  <!--username-->
+  <input
+    type="text"
+    [(ngModel)]="user.username"
+    #userName
+    (input)="emptyFieldCheck(userName.value)"
+    placeholder="username"
+  />
+  <!--name-->
+  <input
+    type="text"
+    [(ngModel)]="user.name"
+    value="user.name"
+    #firstName
+    (input)="emptyFieldCheck(firstName.value)"
+    placeholder="name"
+  />
+  <!--email-->
+  <input
+    type="text"
+    [(ngModel)]="user.email"
+    value="user.email"
+    #userEmail
+    (input)="emptyFieldCheck(userEmail.value)"
+    placeholder="email"
+  />
+  <!--company name-->
+  <input
+    type="text"
+    [(ngModel)]="user.company.name"
+    value="user.company.name"
+    #companyName
+    (input)="emptyFieldCheck(companyName.value)"
+    placeholder="company name"
+  />
+
+  <!-- Cancel & Save buttons -->
+  <div class="form-buttons">
+    <button id="cancel" type="button" (click)="goBack()">Cancel</button>
+    <button id="save" type="button" (click)="save()">Save User</button>
+
+    <!-- this is element is HIDDEN. It is been displayed on demand-->
+    <div
+      id="empty-field-alert"
+      [ngStyle]="{
+        display: isEmptyField ? 'block' : 'none',
+        marginTop: '1rem'
+      }"
+    >
+      No empty fields allowed!
+    </div>
+  </div>
+  <!-- form-buttons -->
+</div>
+<!-- update-inputs -->
+<!-- [ngStyle]="{ display: 'none', marginTop: '1rem' }" -->

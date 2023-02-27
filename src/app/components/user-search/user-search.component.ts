@@ -6,8 +6,9 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { UsersComponent } from '../users/users.component';
 
-import { User } from 'data/user';
-import { UserService } from '../user.service';
+// import { User } from 'data/user';
+import { User } from '../../models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'user-search',

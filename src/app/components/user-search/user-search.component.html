@@ -1,0 +1,14 @@
+<!-- search user by name -->
+<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+<!-- users list -->
+<users></users>
+
+<ul class="search-result">
+  <li *ngFor="let user of users$ | async">
+    <a routerLink="/detail/{{ user.id }}">
+      {{ user.name }}
+    </a>
+  </li>
+</ul>
+<!-- <users [users]="users$"></users> -->

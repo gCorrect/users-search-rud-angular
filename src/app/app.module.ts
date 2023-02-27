@@ -4,17 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-
 import { AppRoutingModule } from './app-routing.module';
 // external
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // components
 import { AppComponent } from './app.component';
-import { UserSearchComponent } from './user-search/user-search.component';
-import { UsersComponent } from './users/users.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserComponent } from './components/user/user.component';
+import { UserDisplayComponent } from './components/user-display/user-display.component';
+import { PostDisplayComponent } from './components/post-display/post-display.component';
+// services
+import { PostsService } from './services/posts.service';
+import { UsersService } from './services/users.service';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   imports: [
@@ -26,17 +30,18 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
   ],
   declarations: [
     AppComponent,
     UserSearchComponent,
     UsersComponent,
     UserEditComponent,
+    UserComponent,
+    UserDisplayComponent,
+    PostDisplayComponent,
+    MessagesComponent,
   ],
-  providers: [],
+  providers: [PostsService, UsersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
