@@ -1,5 +1,7 @@
+// @angular
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// components
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 

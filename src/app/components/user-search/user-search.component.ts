@@ -1,14 +1,12 @@
+// @angular
 import { Component, OnInit } from '@angular/core';
-
+// rxjs
 import { Observable, Subject } from 'rxjs';
-
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
-import { UsersComponent } from '../users/users.component';
-
-// import { User } from 'data/user';
+// data models
 import { User } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
+// services
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'user-search',
@@ -16,20 +14,40 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./user-search.component.scss'],
 })
 export class UserSearchComponent implements OnInit {
-  users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
+  users: User[] = [];
+  matchedUsers: User[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private usersService: UsersService) {}
 
-  search(term: string): void {
-    this.searchTerms.next(term);
+  searchUsers(term: string): void {
+    this.usersService
+      .searchUsers(term)
+      .subscribe((users) => (this.users = users.slice(0, 7)));
+
+    this.users.forEach((user) => {
+      // when input is empty delete matchedUsers array content
+      if (term.length < 2) {
+        this.matchedUsers = [];
+      } else {
+        // when input is not empty or term.length > 1
+        for (let i = 0; i < user.name.length; i++) {
+          // loop through user name characters to find matches
+          if (user.name.substring(0, i + 1) === term) {
+            // if user name starts with term
+            if (
+              // current user is not in matchedUsers array yet then push it
+              this.matchedUsers.find(
+                (searched) => searched.name === user.name
+              ) == null
+            ) {
+              this.matchedUsers.push(user);
+            }
+          }
+        }
+      }
+    });
   }
 
-  ngOnInit(): void {
-    this.users$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.userService.searchUsers(term))
-    );
-  }
-}
+  ngOnInit(): void {}
+} // class end

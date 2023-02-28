@@ -1,0 +1,15 @@
+user-search.component.ts {
+  users$!: Observable<User[]>;
+
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+    ngOnInit :
+    // this.searchUsers(term);
+    // this.users$ = this.searchTerms.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap((term: string) => this.usersService.searchUsers(term))
+    // );
+
+}

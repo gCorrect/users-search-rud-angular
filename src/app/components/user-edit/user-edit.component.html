@@ -1,5 +1,5 @@
 <!-- close X button -->
-<button type="button" (click)="goBack()">
+<button type="button" id="x-button" (click)="goBack()">
   <fa-icon [icon]="xIcon" class="fa-solid fa-x x-icon"></fa-icon>
 </button>
 
@@ -48,7 +48,7 @@
     <button id="cancel" type="button" (click)="goBack()">Cancel</button>
     <button id="save" type="button" (click)="save()">Save User</button>
 
-    <!-- this is element is HIDDEN. It is been displayed on demand-->
+    <!-- alert message on fields been empty-->
     <div
       id="empty-field-alert"
       [ngStyle]="{
@@ -62,4 +62,3 @@
   <!-- form-buttons -->
 </div>
 <!-- update-inputs -->
-<!-- [ngStyle]="{ display: 'none', marginTop: '1rem' }" -->

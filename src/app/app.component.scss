@@ -1,34 +1,28 @@
-h1 {
-  // align-self: center;
-  // text-align: center;
-  // margin-top: 0.2em;
-}
 :host {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-}
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 10%;
-  background-color: rgb(238, 242, 241);
-  margin-bottom: 1em;
-  border-radius: 0.2em;
-  border-bottom: 2px solid black;
-  a {
-    text-decoration: none;
-    color: black;
-    background-color: greenyellow;
-    padding: 0.5em;
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(238, 242, 241);
+    margin-bottom: 1em;
     border-radius: 0.2em;
-    transition: 0.5s;
-    &:hover {
-      background-color: rgb(191, 245, 110);
+    border-bottom: 2px solid black;
+    a {
+      text-decoration: none;
+      color: black;
+      background-color: greenyellow;
+      padding: 0.5em;
+      border-radius: 0.2em;
+      transition: 0.5s;
+      &:hover {
+        background-color: rgb(191, 245, 110);
+      }
     }
   }
 }

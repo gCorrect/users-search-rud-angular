@@ -1,11 +1,13 @@
+// @angular
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+// external
 import { faX } from '@fortawesome/free-solid-svg-icons';
 // data
-// import { User } from 'data/user';
 import { User } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
+// services
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'user-edit',
@@ -20,7 +22,7 @@ export class UserEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
+    private usersService: UsersService,
     private location: Location
   ) {}
 
@@ -30,14 +32,13 @@ export class UserEditComponent implements OnInit {
 
   getUser(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.userService.getUser(id).subscribe((user) => (this.user = user));
+    this.usersService.getUser(id).subscribe((user) => (this.user = user));
   }
 
   emptyFieldCheck(input: String) {
     const saveBtn = document.getElementById('save');
-    let alertBox = document.getElementById('empty-field-alert');
 
-    // check if all fields are filled
+    // if any field is empty
     if (
       input.trim() === '' ||
       this.user?.username.trim() === '' ||
@@ -46,10 +47,13 @@ export class UserEditComponent implements OnInit {
       this.user?.company.name.trim() === ''
     ) {
       this.isEmptyField = true;
+
+      // disable SAVE button
       if (saveBtn !== null) {
         saveBtn.style.cursor = 'not-allowed';
         saveBtn?.setAttribute('disabled', 'true');
-        saveBtn.style.backgroundColor = 'rgb(90, 90, 222)';
+        saveBtn.style.color = 'rgb(188, 186, 186)';
+        saveBtn.style.backgroundColor = '#dff0d8';
         // saveBtn.addEventListener(
         //   'mouseover',
         //   () => {
@@ -67,11 +71,44 @@ export class UserEditComponent implements OnInit {
 
       return;
     } else {
+      // if all fields are filled
       this.isEmptyField = false;
+
+      // restyle save button in default state
       if (saveBtn !== null) {
         saveBtn.style.cursor = 'pointer';
         saveBtn?.removeAttribute('disabled');
+        saveBtn.style.color = 'white';
         saveBtn.style.backgroundColor = 'blue';
+
+        saveBtn.addEventListener(
+          'mouseover',
+          () => {
+            saveBtn.style.backgroundColor = 'rgb(90, 90, 222)';
+          },
+          false
+        );
+        saveBtn.addEventListener(
+          'mouseout',
+          () => {
+            saveBtn.style.backgroundColor = 'blue';
+          },
+          false
+        );
+        saveBtn.addEventListener(
+          'focus',
+          () => {
+            saveBtn.style.backgroundColor = 'rgb(90, 90, 222)';
+          },
+          false
+        );
+        saveBtn.addEventListener(
+          'focusout',
+          () => {
+            saveBtn.style.backgroundColor = 'blue';
+          },
+          false
+        );
       }
 
       return;
@@ -80,7 +117,7 @@ export class UserEditComponent implements OnInit {
 
   save(): void {
     if (this.user) {
-      this.userService.updateUser(this.user).subscribe(() => this.goBack());
+      this.usersService.updateUser(this.user).subscribe(() => this.goBack());
     }
   }
 

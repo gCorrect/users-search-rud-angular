@@ -2,8 +2,8 @@
   width: 100%;
   ul {
     list-style: none;
-    transition: 0.5s;
     width: inherit;
+    // user agent stylesheet
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -37,7 +37,7 @@
             color: rgb(222, 224, 224);
           }
         }
-        .deleteCheck {
+        .confirm-delete {
           padding: 0.5em;
           background-color: rgb(238, 242, 241);
           margin-top: 0.5em;
