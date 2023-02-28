@@ -14,7 +14,6 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./user-search.component.scss'],
 })
 export class UserSearchComponent implements OnInit {
-  private searchTerms = new Subject<string>();
   users: User[] = [];
   matchedUsers: User[] = [];
 
