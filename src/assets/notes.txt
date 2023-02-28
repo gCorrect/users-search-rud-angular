@@ -1,4 +1,5 @@
 user-search.component.ts {
+  private searchTerms = new Subject<string>();
   users$!: Observable<User[]>;
 
   search(term: string): void {
